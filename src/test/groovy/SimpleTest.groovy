@@ -1,7 +1,12 @@
+import spock.lang.Ignore
 import spock.lang.Specification
 
 class SimpleTest extends Specification {
     // https://www.pluralsight.com/guides/java-and-j2ee/introduction-to-testing-with-bdd-and-the-spock-framework
+    // https://semaphoreci.com/community/tutorials/stubbing-and-mocking-in-java-with-the-spock-testing-framework
+    // https://leanpub.com/groovytutorial/read
+    // https://www.youtube.com/watch?v=B98jc8hdu9g
+    // http://www.baeldung.com/groovy-language
 
     def setup() {}         // runs before every feature method
     def cleanup() {}       // runs after every feature method
@@ -64,5 +69,69 @@ class SimpleTest extends Specification {
         3   |   _
         y << [1, 2, 3]
         z = x + y
+    }
+
+    def "using real implementation of DataProvider"() {
+        given: 'The service uses a real instance of DataProvider'
+        def service = new Service(new DataProvider())
+
+        when: 'The service is requested to query data'
+        def result = service.data
+
+        then: 'The size of the data returned by the service should be 2'
+        result.size() == 2
+    }
+
+    def "sets up a stub for DataProvider"() {
+        given: 'The service uses a stubbed instance of DataProvider'
+        def dataProvider = Stub(DataProvider.class)
+        dataProvider.provideData() >> "Stubbed data"
+
+        def service = new Service(dataProvider)
+
+        when: 'The service is requested to query data'
+        def result = service.data
+
+        then: 'The size of the data returned by the service should be 1'
+        result.size() == 1
+        // 1 * dataProvider.provideData // Won't work, DataProvider is not a mock
+    }
+
+    def "sets up a mock for a dependency of the service"() {
+        given: 'The service uses a mocked instance of some object'
+        def someObject = Mock(Object.class)
+        def service = new Service(new DataProvider(), someObject)
+
+        when: 'The service is requested to query data'
+        def result = service.data
+
+        then: 'The size of the data returned by the service should be 1'
+        result.size() == 2
+        1 * someObject.hashCode()
+    }
+
+    @Ignore
+    def "tests MyInt"() {
+        given:
+        def myInt = new MyInt(2)
+
+        when:
+        def result = myInt."+"(3)
+
+        then:
+        result == 5
+    }
+
+    class MyInt {
+
+        private int value;
+
+        MyInt(value) {
+            this.value = value
+        }
+
+        def "+"(int anotherValue) {
+            return value + anotherValue
+        }
     }
 }
