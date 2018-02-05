@@ -108,6 +108,9 @@ class SimpleTest extends Specification {
         then: 'The size of the data returned by the service should be 1'
         result.size() == 2
         1 * someObject.hashCode()
+        1 * someObject.equals({
+            anotherObj -> anotherObj == 'anotherObjectHere'
+        })
     }
 
     @Ignore

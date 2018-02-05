@@ -23,6 +23,7 @@ public class Service {
             result.add("atad");
         }
         someObject.hashCode();
+        someObject.equals("anotherObjectHere");
         return result;
     }
 }
