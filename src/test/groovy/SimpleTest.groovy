@@ -5,10 +5,7 @@ class SimpleTest extends Specification {
     // http://spockframework.org/spock/docs//current/index.html
     // https://www.pluralsight.com/guides/java-and-j2ee/introduction-to-testing-with-bdd-and-the-spock-framework
     // https://semaphoreci.com/community/tutorials/stubbing-and-mocking-in-java-with-the-spock-testing-framework
-    // https://leanpub.com/groovytutorial/read
-    // https://www.youtube.com/watch?v=B98jc8hdu9g
-    // http://www.baeldung.com/groovy-language
-
+    
     def setup() {}         // runs before every feature method
     def cleanup() {}       // runs after every feature method
     def setupSpec() {}     // runs before the first feature method
