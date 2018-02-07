@@ -1,7 +1,16 @@
 package basics
 
-// Default scope for classes, and methods is public, for fields it's private (not true)
 class Person {
     String name
     String lastName
+    private String fullName
+
+    void setName(String name) {
+        this.name = name
+        println 'name attribute was changed through setter method'
+    }
+
+    String getLastName() {
+        lastName + "."
+    }
 }
