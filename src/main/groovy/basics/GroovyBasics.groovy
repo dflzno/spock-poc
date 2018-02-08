@@ -87,7 +87,7 @@ class GroovyBasics {
 
         number = 2
         println 'eagerGString' + eagerGString // value is still 1
-        println 'lazyGString' + lazyGString   // value is 2, because a closure in an interpolated String gets lazyly evaluated
+        println 'lazyGString' + lazyGString   // value is 2, because a closure in an interpolated String gets lazily evaluated
 
         def oneAsString = "1"
         def oneAsGString = "${1}"

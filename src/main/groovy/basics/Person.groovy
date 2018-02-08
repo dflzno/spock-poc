@@ -13,4 +13,8 @@ class Person {
     String getLastName() {
         lastName + "."
     }
+
+    private String getClassName() {
+        'Person'
+    }
 }

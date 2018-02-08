@@ -46,7 +46,7 @@ println marathonRunner.class.name
 marathonRunner.run()
 
 treadmillRunner = new TreadmillRunner()
-treadmillRunner = treadmillRunner as Runner // still possible
+treadmillRunner = treadmillRunner as Runner // still possible, even though class TreadmillRunner doesn't implement the run() method
 println treadmillRunner.class.name
 //treadmillRunner.run() // this will fail in runtime
 treadmillRunner.letsSayRun() // surprisingly, this works

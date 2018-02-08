@@ -16,7 +16,7 @@ class GroovyNotSoBasic {
         println anotherListOfDogs
 
         def xyz = [1, 2, 3]
-        println "Sum of xyz: ${sumOfThreeNumbers(*xyz)}"
+
         //
 
         // Type coercion
@@ -27,6 +27,8 @@ class GroovyNotSoBasic {
         println ((['Bobby', 5] as Dog) as String)
         Dog d = ['Firulais', 2]
         println (d as String)
+        //
+
     }
 
     static transform(List elements, Closure action) {
